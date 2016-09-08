@@ -1,8 +1,10 @@
 program exe1
-    use lib1, only : i
+    use lib1, only : is_two
     implicit none
+    integer :: i
     print *, "Hello World"
-    i = 10
-    print *, "i is ", i
+    do i = 1, 5, 1
+        print *, i, is_two(i)
+    end do
 
 end program exe1

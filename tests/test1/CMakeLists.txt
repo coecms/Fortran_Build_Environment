@@ -1,6 +1,9 @@
 project(test1)
 
-set(_tests test1)
+set(_tests
+    test1
+)
+
 set(testSuites ${PROJECT_BINARY_DIR}/generated/testSuites.inc)
 message(STATUS "testSuites is ${testSuites}")
 
@@ -46,6 +49,3 @@ install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION test
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib/static)
-
-
-add_test(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/${PROJECT_NAME})

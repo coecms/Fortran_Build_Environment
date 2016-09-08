@@ -19,6 +19,8 @@ IF(IS_DIRECTORY ${PFUNIT_DIR})
     message(STATUS "pFUnit found in ${PFUNIT_DIR}")
     add_subdirectory(tests)
     enable_testing()
+    # Add the tests below
+    add_test(NAME Test COMMAND test1)
 ELSE()
     message(WARNING "pFUnit not installed, testing disabled")
 ENDIF()

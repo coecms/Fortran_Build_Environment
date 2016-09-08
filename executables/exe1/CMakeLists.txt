@@ -1,0 +1,7 @@
+project(exe1)
+
+file(GLOB ${PROJECT_NAME}_sources "*.f90")
+
+message("Sources for Project ${PROJECT_NAME}: ${${PROJECT_NAME}_sources}")
+
+add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_sources})

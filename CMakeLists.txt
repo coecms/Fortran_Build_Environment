@@ -13,4 +13,11 @@ set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
 add_subdirectory(libraries)
 add_subdirectory(executables)
-#add_subdirectory(projects)
+
+set(PFUNIT_DIR $ENV{PFUNIT})
+IF(IS_DIRECTORY ${PFUNIT_DIR})
+    message(STATUS "pFUnit found in ${PFUNIT_DIR}")
+    add_subdirectory(tests)
+ELSE()
+    message(WARNING "pFUnit not installed, testing disabled")
+ENDIF()

@@ -18,6 +18,13 @@ set(PFUNIT_DIR $ENV{PFUNIT})
 IF(IS_DIRECTORY ${PFUNIT_DIR})
     message(STATUS "pFUnit found in ${PFUNIT_DIR}")
     add_subdirectory(tests)
+
+    # Add compiler flags for testing
+    if(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
+        message(STATUS "adding compiler flags for code coverage")
+        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -fprofile-arcs -ftest-coverage")
+    endif()
+
     enable_testing()
     # Add the tests below
     add_test(NAME Test COMMAND test1)

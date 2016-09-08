@@ -27,7 +27,7 @@ IF(IS_DIRECTORY ${PFUNIT_DIR})
 
     enable_testing()
     # Add the tests below
-    add_test(NAME Test COMMAND test1)
+    add_test(NAME Test_is_two COMMAND test1)
 ELSE()
     message(WARNING "pFUnit not installed, testing disabled")
 ENDIF()

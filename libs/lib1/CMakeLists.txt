@@ -1,5 +1,7 @@
 project(lib1)
 
-aux_source_directory("." ${PROJECT_NAME}_sources)
+file(GLOB ${PROJECT_NAME}_sources "*.f90")
 
 message("Sources for project ${PROJECT_NAME}: ${${PROJECT_NAME}_sources}")
+
+add_library(${PROJECT_NAME} ${${PROJECT_NAME}_sources})

@@ -26,10 +26,10 @@ set_source_files_properties(${PFUNIT_DIR}/include/driver.F90 PROPERTIES GENERATE
 include_directories(
     ${PROJECT_SOURCE_DIR}
     ${PROJECT_BINARY_DIR}/generated
-    ${PROJECT_BINARY_DIR}/generated/mod
+#    ${PROJECT_BINARY_DIR}/generated/mod
     ${PFUNIT_DIR}/include
     ${PFUNIT_DIR}/mod
-    ../../generated/mods
+#    ../../generated/mods
 )
 
 add_executable(
@@ -45,9 +45,9 @@ target_link_libraries(
 )
 
 install(TARGETS ${PROJECT_NAME}
-        RUNTIME DESTINATION tests
+        RUNTIME DESTINATION test
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib/static)
 
-enable_testing()
+
 add_test(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/${PROJECT_NAME})

@@ -20,6 +20,19 @@ this number is indeed 2.
 
 If you have pFUnit installed, it should also manage to write a unit test `test/test1` that tests the library.
 
+You can run this test by running the following command in your build directory
+
+    make test
+
+## NCI users
+
+This has been tested on raijin at the NCI with the following environment:
+
+    module purge
+    module load cmake intel-fc/16.0.3.210 intel-cc/16.0.3.210
+    module use ~access/modules
+    module load pfunit
+    
 ## Writing your own libraries / modules
 
 1. Create a new subdirectory under `libraries`.

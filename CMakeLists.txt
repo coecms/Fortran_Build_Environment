@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.4)
 
 project(build_test)
 
@@ -10,6 +10,10 @@ include_directories(${CMAKE_Fortran_MODULE_DIRECTORY})
 file(MAKE_DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY})
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
+
+set(CMAKE_Fortran_COMPILER mpif90)
+
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
 
 add_subdirectory(libraries)
 add_subdirectory(executables)

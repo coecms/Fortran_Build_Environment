@@ -20,6 +20,7 @@ IF(IS_DIRECTORY ${PFUNIT_DIR})
     add_subdirectory(tests)
 
     if (NOT ${PFUNIT_DIR} MATCHES ".*pfunit-serial.*")
+        message("pFUnit seems to not be serial, changing compiler to mpif90")
         set(CMAKE_Fortran_COMPILER mpif90)
         set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
     endif()

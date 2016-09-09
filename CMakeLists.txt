@@ -11,10 +11,6 @@ file(MAKE_DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY})
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
-set(CMAKE_Fortran_COMPILER mpif90)
-
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
-
 add_subdirectory(libraries)
 add_subdirectory(executables)
 
@@ -22,6 +18,11 @@ set(PFUNIT_DIR $ENV{PFUNIT})
 IF(IS_DIRECTORY ${PFUNIT_DIR})
     message(STATUS "pFUnit found in ${PFUNIT_DIR}")
     add_subdirectory(tests)
+
+    if (NOT ${PFUNIT_DIR} MATCHES ".*pfunit-serial.*")
+        set(CMAKE_Fortran_COMPILER mpif90)
+        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
+    endif()
 
     # Add compiler flags for testing
     if(CMAKE_Fortran_COMPILER_ID MATCHES GNU)

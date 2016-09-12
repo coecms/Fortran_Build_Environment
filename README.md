@@ -32,7 +32,7 @@ This has been tested on raijin at the NCI with the following environment:
     module load cmake intel-fc/16.0.3.210 intel-cc/16.0.3.210
     module use ~access/modules
     module load pfunit
-    
+
 ## Writing your own libraries / modules
 
 1. Create a new subdirectory under `libraries`.
@@ -55,6 +55,4 @@ the project name. (Also, you might want to remove the dependency to `lib1`.)
 the project name.
 4. Ensure that you add a dependency to the library you want to test.
 5. Write your `pFUnit` compliant tests into files with the extension `.pf`
-6. Add the file name of all test files (without the `.pf`) to the `_tests` section
-of `tests/<yourtest>/CMakeLists.txt`
-7. Add an `add_test()` line to the `CMakeLists.txt` file in the root directory.
+6. Add an `add_test()` line to the `CMakeLists.txt` file in the root directory.

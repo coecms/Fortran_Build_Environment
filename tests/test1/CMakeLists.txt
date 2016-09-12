@@ -1,8 +1,9 @@
 project(test1)
 
-set(_tests
-    test1
-)
+#set(_tests
+#    test1
+#)
+file(GLOB pf_files "*.pf")
 
 set(testSuites ${PROJECT_BINARY_DIR}/generated/testSuites.inc)
 message(STATUS "testSuites is ${testSuites}")
@@ -12,7 +13,8 @@ file(WRITE ${testSuites} "")
 
 
 set(_test_sources)
-foreach(_test ${_tests})
+foreach(pf ${pf_files})
+    get_filename_component(_test ${pf} NAME_WE)
     message(STATUS "Adding test ${_test}")
     set(test_dependency ${PROJECT_SOURCE_DIR}/${_test}.pf)
     add_custom_command(

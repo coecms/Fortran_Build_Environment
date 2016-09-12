@@ -18,9 +18,9 @@ set(PFUNIT_DIR $ENV{PFUNIT})
 IF(IS_DIRECTORY ${PFUNIT_DIR})
     message(STATUS "pFUnit found in ${PFUNIT_DIR}")
 
-    if (NOT ${PFUNIT_DIR} MATCHES ".*pfunit-serial.*")
-        message(STATUS "pFUnit seems to not be serial, changing compiler to mpif90")
-        set(CMAKE_Fortran_COMPILER mpif90)
+    if (${CMAKE_Fortran_COMPILER} MATCHES "mpi.*")
+        message(STATUS "We seem to be parallel, adding OpenMP support")
+        #        set(CMAKE_Fortran_COMPILER mpif90)
         set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
     endif()
 

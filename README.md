@@ -28,10 +28,20 @@ You can run this test by running the following command in your build directory
 
 This has been tested on raijin at the NCI with the following environment:
 
+For serial:
+
     module purge
     module load cmake intel-fc/16.0.3.210 intel-cc/16.0.3.210
     module use ~access/modules
+    module load pfunit/3.2.7-serial
+
+For parallel:
+
+    module purge
+    module load cmake intel-fc/16.0.3.210 intel-cc/16.0.3.210 openmpi/1.8.6
+    module use ~access/modules
     module load pfunit
+    export FC=mpif90
 
 ## Writing your own libraries / modules
 

@@ -5,7 +5,7 @@ a structure and a surrounding CMake environment to compile and test.
 
 #### Note:
 
-This project has been crafted with the scientists of the 
+This project has been crafted with the scientists of the
 Centre of Excellence for Climate System Science in mind.
 Feel free to use it, but don't be confused when some parts of this document are
 specifically geared towards the computational infrastructure for these scientists.
@@ -31,7 +31,7 @@ You can run this test by running the following command in your build directory
 
     make test
 
-## NCI users
+#### NCI users:
 
 This has been tested on raijin at the NCI with the following environment:
 

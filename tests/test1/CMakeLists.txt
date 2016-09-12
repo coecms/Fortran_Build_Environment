@@ -1,8 +1,5 @@
 project(test1)
 
-#set(_tests
-#    test1
-#)
 file(GLOB pf_files "*.pf")
 
 set(testSuites ${PROJECT_BINARY_DIR}/generated/testSuites.inc)

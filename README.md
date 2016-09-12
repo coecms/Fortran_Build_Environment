@@ -3,6 +3,13 @@
 The idea is that you can fork this project into your own system, and you immediately have
 a structure and a surrounding CMake environment to compile and test.
 
+#### Note:
+
+This project has been crafted with the scientists of the 
+Centre of Excellence for Climate System Science in mind.
+Feel free to use it, but don't be confused when some parts of this document are
+specifically geared towards the computational infrastructure for these scientists.
+
 ## Basic usage
 
 After you have cloned this repo, go into its main directory and type the following:
@@ -40,7 +47,7 @@ For parallel:
     module purge
     module load cmake intel-fc/16.0.3.210 intel-cc/16.0.3.210 openmpi/1.8.6
     module use ~access/modules
-    module load pfunit
+    module load pfunit/3.2.7
     export FC=mpif90
 
 ## Writing your own libraries / modules

@@ -11,25 +11,47 @@ file(MAKE_DIRECTORY ${CMAKE_Fortran_MODULE_DIRECTORY})
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
-add_subdirectory(libraries)
-add_subdirectory(executables)
+# if DEBUG requested, set the various debug options.
+IF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
+    set(CMAKE_Fortran_FLAGS_DEBUG "-g -O0")
+    IF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
+        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -Wall -fcheck=all")
+    ELSEIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "Intel")
+        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -warn all -check all")
+    ELSE()
+        message(WARNING "Unable to determine Compiler ID: ${CMAKE_Fortran_COMPILER_ID}")
+    ENDIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
+    message(STATUS "Debug flags for ${CMAKE_Fortran_COMPILER_ID}: ${CMAKE_Fortran_FLAGS_DEBUG}")
+ENDIF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
 
 set(PFUNIT_DIR $ENV{PFUNIT})
 IF(IS_DIRECTORY ${PFUNIT_DIR})
     message(STATUS "pFUnit found in ${PFUNIT_DIR}")
+
+    # If in DEBUG mode, add parameters for test coverage
+    IF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
+        IF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
+            message(STATUS "Adding compile options -fprofile-arcs -ftest-coverage")
+            set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
+        #ELSEIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "Intel")
+        #    set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}")
+        #ELSE()
+        #    message(WARNING "Unable to determine Compiler ID: ${CMAKE_Fortran_COMPILER_ID}")
+        ENDIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
+    ENDIF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
+
 
     if (${CMAKE_Fortran_COMPILER} MATCHES "mpi.*")
         message(STATUS "We seem to be parallel, adding OpenMP support")
         #        set(CMAKE_Fortran_COMPILER mpif90)
         set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
     endif()
+ENDIF(IS_DIRECTORY ${PFUNIT_DIR})
 
-    # Add compiler flags for testing
-    if(CMAKE_Fortran_COMPILER_ID MATCHES GNU)
-        message(STATUS "adding compiler flags for code coverage")
-        set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g -fprofile-arcs -ftest-coverage")
-    endif()
+add_subdirectory(libraries)
+add_subdirectory(executables)
 
+IF(IS_DIRECTORY ${PFUNIT_DIR})
     add_subdirectory(tests)
     enable_testing()
     # Add the tests below

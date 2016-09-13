@@ -1,4 +1,4 @@
-project(test1)
+project(test1 Fortran)
 
 file(GLOB pf_files "*.pf")
 

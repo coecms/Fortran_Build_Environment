@@ -1,3 +1,3 @@
-project(executables)
+project(executables Fortran)
 
 add_subdirectory(exe1)

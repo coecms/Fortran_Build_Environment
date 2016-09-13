@@ -32,7 +32,7 @@ set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
 # if DEBUG requested, set the various debug options.
 IF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
-#    set(CMAKE_Fortran_FLAGS_DEBUG "-g -O0")
+    set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -O0")
     IF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
         set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -Wall -fcheck=all -fbacktrace")
     ELSEIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "Intel")

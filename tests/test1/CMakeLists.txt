@@ -27,7 +27,7 @@ set_source_files_properties(${PFUNIT_DIR}/include/driver.F90 PROPERTIES GENERATE
 IF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
     string(REGEX REPLACE " -Wall" "" CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG}")
 ELSEIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "Intel")
-    set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} --diag-disable 7712")
+    set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -diag-disable 7712")
 ENDIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
 
 include_directories(

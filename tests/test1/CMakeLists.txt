@@ -3,11 +3,8 @@ project(test1 Fortran)
 file(GLOB pf_files "*.pf")
 
 set(testSuites ${PROJECT_BINARY_DIR}/generated/testSuites.inc)
-message(STATUS "testSuites is ${testSuites}")
 
-message(STATUS "Sources for Project ${PROJECT_NAME}: ${${PROJECT_NAME}_sources}")
 file(WRITE ${testSuites} "")
-
 
 set(_test_sources)
 foreach(pf ${pf_files})

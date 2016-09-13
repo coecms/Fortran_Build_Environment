@@ -4,6 +4,25 @@ project(build_test Fortran)
 
 enable_language(Fortran)
 
+# Check whether the user has selected a BUILD_TYPE
+IF ("${CMAKE_BUILD_TYPE}" STREQUAL "")
+
+    message(STATUS "Build type not explicitly set. Trying to guess...")
+    get_filename_component(BINDIR ${PROJECT_BINARY_DIR} NAME)
+    IF (${BINDIR} MATCHES "RELEASE")
+        set(CMAKE_BUILD_TYPE "RELEASE")
+        message(STATUS "Set to ${CMAKE_BUILD_TYPE}")
+    ELSEIF(${BINDIR} MATCHES "DEBUG")
+        set(CMAKE_BUILD_TYPE "DEBUG")
+        message(STATUS "Set to ${CMAKE_BUILD_TYPE}")
+    ELSE()
+        message(WARNING "Unable to deduce build type.")
+    ENDIF(${BINDIR} MATCHES "RELEASE")
+
+ELSE()
+    message(STATUS "Build Type is ${CMAKE_BUILD_TYPE}")
+ENDIF("${CMAKE_BUILD_TYPE}" STREQUAL "")
+
 set(CMAKE_Fortran_MODULE_DIRECTORY ${PROJECT_BINARY_DIR}/generated/mods)
 
 include_directories(${CMAKE_Fortran_MODULE_DIRECTORY})
@@ -13,11 +32,11 @@ set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
 # if DEBUG requested, set the various debug options.
 IF(${CMAKE_BUILD_TYPE} MATCHES "DEBUG")
-    set(CMAKE_Fortran_FLAGS_DEBUG "-g -O0")
+#    set(CMAKE_Fortran_FLAGS_DEBUG "-g -O0")
     IF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")
-        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -Wall -fcheck=all")
+        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -Wall -fcheck=all -fbacktrace")
     ELSEIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "Intel")
-        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -warn all -check all")
+        set(CMAKE_Fortran_FLAGS_DEBUG "${CMAKE_Fortran_FLAGS_DEBUG} -warn all -check all -traceback")
     ELSE()
         message(WARNING "Unable to determine Compiler ID: ${CMAKE_Fortran_COMPILER_ID}")
     ENDIF(${CMAKE_Fortran_COMPILER_ID} MATCHES "GNU")

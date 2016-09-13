@@ -14,16 +14,20 @@ specifically geared towards the computational infrastructure for these scientist
 
 After you have cloned this repo, go into its main directory and type the following:
 
-    mkdir bld
-    cd bld
+    mkdir RELEASE
+    cd RELEASE
     cmake ..
     make -j
     make install
 
 This should build a tiny library `lib/static/liblib1.a` with a single funtion `is_two(n)`
 which returns `.T.` if and only if the only parameter is indeed 2, and `.F.` otherwise,
-and a single program `bin/exe1` that will write "Hello World" and check for each number in 1..5 whether
-this number is indeed 2.
+and a single program `bin/exe1` that will write "Hello World" and check for each
+number in 1..5 whether this number is indeed 2.
+
+You can also build a `DEBUG` version by just renaming the directory.
+In `DEBUG`, several debug options are selected when compiling, and the code is not
+optimised.
 
 If you have pFUnit installed, it should also manage to write a unit test `test/test1` that tests the library.
 
@@ -31,9 +35,13 @@ You can run this test by running the following command in your build directory
 
     make test
 
+You only have to re-run the `cmake` command from above if you add new files or change
+any `CMakeLists.txt` files. Otherwise, the `make` commands alone will be enough to
+build after code changes.
+
 #### NCI users:
 
-This has been tested on raijin at the NCI with the following environment:
+This has been tested on `raijin` at the **NCI** with the following environment:
 
 For serial:
 

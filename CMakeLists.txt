@@ -16,7 +16,7 @@ IF ("${CMAKE_BUILD_TYPE}" STREQUAL "")
         set(CMAKE_BUILD_TYPE "DEBUG")
         message(STATUS "Set to ${CMAKE_BUILD_TYPE}")
     ELSE()
-        message(WARNING "Unable to deduce build type.")
+        message(WARNING "Unable to deduce build type. Use -DCMAKE_BUILD_TYPE=<RELEASE/DEBUG>")
     ENDIF(${BINDIR} MATCHES "RELEASE")
 
 ELSE()

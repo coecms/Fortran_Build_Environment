@@ -67,7 +67,7 @@ IF(IS_DIRECTORY ${PFUNIT_DIR})
     endif()
 ENDIF(IS_DIRECTORY ${PFUNIT_DIR})
 
-add_subdirectory(libraries)
+add_subdirectory(modules)
 add_subdirectory(executables)
 
 IF(IS_DIRECTORY ${PFUNIT_DIR})

@@ -1,4 +1,4 @@
-project(lib1 Fortran)
+project(mod1 Fortran)
 
 file(GLOB ${PROJECT_NAME}_sources "*.f90")
 

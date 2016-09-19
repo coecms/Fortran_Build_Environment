@@ -46,7 +46,7 @@ add_executable(
 target_link_libraries(
     ${PROJECT_NAME}
     ${PFUNIT_DIR}/lib/libpfunit.a
-    lib1
+    mod1
 )
 
 install(TARGETS ${PROJECT_NAME}

@@ -1,5 +1,5 @@
 program exe1
-    use lib1, only : is_two
+    use mod1, only : is_two
     implicit none
     integer :: i
     print *, "Hello World"

@@ -1,4 +1,4 @@
-module lib1
+module mod1
 
     implicit none
 
@@ -11,4 +11,4 @@ contains
         is_two = ( n == 2 )
     end function is_two
 
-end module lib1
+end module mod1

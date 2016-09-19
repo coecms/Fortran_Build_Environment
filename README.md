@@ -60,9 +60,9 @@ For parallel:
 
 ## Writing your own libraries / modules
 
-1. Create a new subdirectory under `libraries`.
-2. Change the `libraries/CMakeLists.txt` to include your new subdirectory.
-3. Copy the `libraries/lib1/CMakeLists.txt` into your new subdirectory and change the
+1. Create a new subdirectory under `modules`.
+2. Change the `modules/CMakeLists.txt` to include your new subdirectory.
+3. Copy the `modules/lib1/CMakeLists.txt` into your new subdirectory and change the
 project name.
 
 ## Writing your own executables
@@ -70,7 +70,7 @@ project name.
 1. Create a new subdirectory under `executables`.
 2. Modify `executables/CMakeLists.txt` to include your new subdirectory.
 3. Copy `executables/exe1/CMakeLists.txt` into your new subdirectory and change
-the project name. (Also, you might want to remove the dependency to `lib1`.)
+the project name. (Also, you might want to remove the dependency to `mod1`.)
 
 ## Writing your own tests
 
